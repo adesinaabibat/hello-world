@@ -24,7 +24,7 @@ pipeline {
         }
         stage('imagetag') {
             steps {
-                // This is to build the job
+                // This is to tag the job
                  
                  sh "docker build -t ab4ever/hello-world:${BUILD_NUMBER} ." 
                  sh "docker push a4ever/hello-world:$BUILD_NUMBER"
