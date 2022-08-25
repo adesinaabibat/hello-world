@@ -22,13 +22,22 @@ pipeline {
 
             }
         }
-        stage('imagetag') {
+        stage('docker build') {
             steps {
-                // This is to tag the job
+                script {
+                // This is to build the job
+                 sh " sudo docker build -t ab4ever/hello-world:${BUILD_NUMBER} ." 
+                }
+            }
+        }
+       stage('docker image') {
+           steps{
+               script {
+                  
                  
-                 sh "docker build -t ab4ever/hello-world:${BUILD_NUMBER} ." 
-                 sh "docker push a4ever/hello-world:$BUILD_NUMBER"
-    }
+                sh "docker push ab4ever/hello-world:$BUILD_NUMBER"
+               }
         }
     }
+}
 }
